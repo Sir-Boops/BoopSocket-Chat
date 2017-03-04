@@ -1,0 +1,14 @@
+{
+	"name":"BoopSocket-Chat",
+	"description":"A flexable websocket chat server",
+	"author":"Sir_Boops <admin@boops.me>",
+	"homepage":"https://git.frgl.pw/Sir_Boops/BoopSocket-Chat",
+	"license":"GPL-3.0",
+	"bugs":"https://git.frgl.pw/Sir_Boops/BoopSocket-Chat/issues",
+	"repository":"https://git.frgl.pw/Sir_Boops/BoopSocket-Chat",
+	"engine":"node >= 7.0.0",
+	"dependencies":	{
+		"ws":"2.2.0",
+		"validate.js":"0.11.1"
+	}
+}
