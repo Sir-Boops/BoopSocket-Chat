@@ -9,6 +9,7 @@
 	"engine":"node >= 7.0.0",
 	"dependencies":	{
 		"ws":"2.2.0",
-		"validate.js":"0.11.1"
+		"validate.js":"0.11.1",
+		"mysql":"2.13.0"
 	}
 }
