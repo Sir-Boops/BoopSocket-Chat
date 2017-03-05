@@ -1,11 +1,14 @@
+// Import local libs
+var message = require('./../handlers/send_message.js');
+
 var handle = function(msg, res){
 
 	// Lobby Welcome Message
-	res.send("Welcome to the lobby!")
+	message.send("Welcome to the lobby!", res);
 
 	// Check if they where send here or not
 	if (msg == null){
-		res.send("You can view commands via /help");
+		message.send("You can view commands via /help", res);
 	}
 };
 

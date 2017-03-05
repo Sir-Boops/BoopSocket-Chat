@@ -3,7 +3,8 @@ var WebSocketServer = require('ws').Server;
 
 // Local Imports
 var lobby = require('./rooms/lobby.js');
-var message = require('./handlers/message.js');
+var messages = require('./handlers/message.js');
+var message = require('./handlers/send_message.js');
 
 // Start listening
 wss = new WebSocketServer({
@@ -14,7 +15,7 @@ wss = new WebSocketServer({
 wss.on('connection', function(ws){
 
 	// Hello User!
-	ws.send("Welcome");
+	message.send("Welcome", ws);
 
 	// Send the user to the lobby
 	lobby.handle(null, ws);
@@ -23,7 +24,12 @@ wss.on('connection', function(ws){
 	ws.on('message', function(msg){
 		
 		// Handle the message
-		message.handle(msg, ws);
+		var res = messages.handle(msg);
+
+		// If null don't send
+		if(res) {
+			message.send(res, ws);
+		};
 	});
 
 });

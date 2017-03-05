@@ -1,5 +1,5 @@
-// Node.JS Imports
-var validate = require("validate.js");
+//Import commands
+var help = require('./../commands/help.js');
 
 var handle = function(msg_raw, res){
 
@@ -21,9 +21,21 @@ var handle = function(msg_raw, res){
 		
 		// Check if it's a command
 		if(msg.msg.charAt(0) == "/"){
-			console.log("command");
+
+			// Split the command
+			var str = msg.msg.toLowerCase().split(" ");
+
+			// Check what the base command is
+			//If Help
+			if(str[0] == "/help") {
+				return(help.res(str));
+			};
 		};
 	};
+
+	// If all else fails return null
+	return null;
+
 };
 
 module.exports.handle = handle;
