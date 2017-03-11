@@ -4,3 +4,4 @@
 * Every Room has their own UUID
 * All users join the lobby like IRC
 * TLS ( Forced ?? )
+* Everything is done via chat commands
