@@ -3,8 +3,8 @@ var sqlite3 = require('sqlite3').verbose();
 var fs = require('fs');
 
 // Delete the old DB
-if(fs.existsSync('../dbs/users.sql')) {
-	fs.unlink('../dbs/users.sql', function(err) {
+if(fs.existsSync('./dbs/users.sql')) {
+	fs.unlink('./dbs/users.sql', function(err) {
 		if(err) {
 			console.log(err);
 		} else {
@@ -18,8 +18,8 @@ if(fs.existsSync('../dbs/users.sql')) {
 
 // Create the DB
 function gen_db() {
-	var db = new sqlite3.Database('../dbs/users.sql');
+	var db = new sqlite3.Database('./dbs/users.sql', 'OPEN_READWRITE | OPEN_CREATE');
 
 	// Create the table
-	db.run("CREATE TABLE main.users (UUID text, username text, password text)");
+	db.run("CREATE TABLE main.users (UUID text, username text, password text, rand text)");
 };

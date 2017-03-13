@@ -34,7 +34,20 @@ var res = function(msg) {
 
 				});
 
+				// New account has been created!
+				return "Account created!";
+
 			};
+		} else {
+
+			// Else the user is logging in!
+			db.get('SELECT * FROM users WHERE username like $user',{ $user: msg[1]} ,function(err, row) {
+
+				//Check if username and password is right
+				console.log(row);
+
+			});
+
 		};
 	};
 };
