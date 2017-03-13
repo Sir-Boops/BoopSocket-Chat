@@ -33,3 +33,6 @@ node_modules
 
 # Active config file
 config.json
+
+# User Made DataBases
+dbs/*
