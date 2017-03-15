@@ -4,7 +4,7 @@ var res = function(msg) {
 	// If just /help
 	if(msg.length == 1){
 		// TODO: Make a proper help menu
-		return "Gay";
+		return '{"sender":"Server", "msg":"Gay"}';
 	};
 
 	if(msg.length >= 2) {
@@ -12,7 +12,7 @@ var res = function(msg) {
 		// All sub commands here
 		// If /help login
 		if(msg[1] == "login") {
-			return("Commands: <br> /login [username] [password] <br> /login create [username] [password]");
+			return('{ "sender":"Server", "msg":"Commands: <br> /login [username] [password] <br> /login create [username] [password]"}');
 		};
 	};
 };

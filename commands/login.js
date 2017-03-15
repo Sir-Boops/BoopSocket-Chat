@@ -25,17 +25,31 @@ var res = function(msg) {
 				return "/help login";
 			} else {
 
-				// Create a UUID
-				db.run('INSERT INTO users VALUES ($uuid, $username, $password)',{
+				var key = uuid.v4();
 
-					$uuid: (uuid.v4()),
-					$username: msg[2],
-					$password: msg[3]
+				// Check if account name is already registered
 
+				db.get('SELECT uuid FROM users WHERE username LIKE $name', {$name: msg[2]}, function(err, row) {
+
+					// If !null account name already in use
+					if(row){
+						in_use();
+					} else {
+
+						db.run('INSERT INTO users VALUES ($uuid, $username, $password, $key)', {
+		                                        $uuid: (uuid.v4()),
+							$username: msg[2],
+							$password: msg[3],
+							$key: key
+						});
+					};
 				});
 
-				// New account has been created!
-				return "Account created!";
+				// Account is use function
+				function in_use() {return {sender: 'Server', msg: 'Account name already in use!'};};
+
+				// Account created! return new key
+				return {sender: 'Server', msg: 'Account created', key: key};
 
 			};
 		} else {
@@ -44,6 +58,7 @@ var res = function(msg) {
 			db.get('SELECT * FROM users WHERE username like $user',{ $user: msg[1]} ,function(err, row) {
 
 				//Check if username and password is right
+				console.log(err);
 				console.log(row);
 
 			});

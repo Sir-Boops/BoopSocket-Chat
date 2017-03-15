@@ -15,7 +15,7 @@ wss = new WebSocketServer({
 wss.on('connection', function(ws){
 
 	// Hello User!
-	message.send("Welcome", ws);
+	message.send('{"sender":"Server", "msg":"Welcome"}', ws);
 
 	// Send the user to the lobby
 	lobby.handle(null, ws);
